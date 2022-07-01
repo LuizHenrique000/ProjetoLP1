@@ -1,5 +1,7 @@
-package com.fundatec.lp1.models;
-
-public class Profissional {
-
-}
+/*
+ * package com.fundatec.lp1.models;
+ * 
+ * public class Profissional {
+ * 
+ * }
+ */

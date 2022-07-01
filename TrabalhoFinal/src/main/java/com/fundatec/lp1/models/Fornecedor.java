@@ -1,5 +1,7 @@
-package com.fundatec.lp1.models;
-
-public class Fornecedor {
-
-}
+/*
+ * package com.fundatec.lp1.models;
+ * 
+ * public class Fornecedor {
+ * 
+ * }
+ */
