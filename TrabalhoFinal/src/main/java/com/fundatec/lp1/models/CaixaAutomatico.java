@@ -1,7 +1,5 @@
-/*
- * package com.fundatec.lp1.models;
- * 
- * public class CaixaAutomatico {
- * 
- * }
- */
+package com.fundatec.lp1.models;
+
+public class CaixaAutomatico {
+
+}

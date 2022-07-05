@@ -7,6 +7,7 @@ public class ClienteConverter {
 	
 	public static ClienteDTO converterParaDTO(Cliente cliente) {
 		ClienteDTO dto = new ClienteDTO();
+		dto.setId(cliente.getId());
 		dto.setNome(cliente.getNome());
 		dto.setCpf(cliente.getCpf());
 		dto.setEndereco(cliente.getEndereco());
