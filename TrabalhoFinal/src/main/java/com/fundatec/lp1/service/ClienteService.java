@@ -1,5 +1,7 @@
 package com.fundatec.lp1.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fundatec.lp1.dto.ClienteDTO;
@@ -13,11 +15,8 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 	
-	public ClienteDTO findById(Integer id) {
-		Cliente entity = repository.findById(id).orElseThrow(() -> new RuntimeException("Assinante inexistente"));
-		ClienteConverter.converterParaDTO(entity);
-		ClienteDTO dto = new ClienteDTO(entity);
-		return dto;
+	public List<Cliente> findAll() {
+		return repository.findAll();
 	}
 	
 	public ClienteDTO adicionarCliente(ClienteDTO dto) {
