@@ -37,7 +37,5 @@ public class Banco {
 		this.nome = nome;
 		this.senha = senha;
 	}
-	
-	
 
 }

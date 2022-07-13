@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fundatec.lp1.converter.ContaConverter;
 import com.fundatec.lp1.dto.ContaDTO;
+import com.fundatec.lp1.enums.StatusConta;
 import com.fundatec.lp1.models.Conta;
 import com.fundatec.lp1.repository.ContaRepository;
 
@@ -24,5 +25,13 @@ public class ContaService {
 	public List<Conta> findAll() {
 		List<Conta> contas = repository.findAll();
 		return contas;
+	}
+
+	public ContaDTO ativarContaPorId(Integer id) {
+		Conta entity = repository.findById(id).get();
+		ContaDTO dto = new ContaDTO(entity);
+		dto.setStatus(StatusConta.ATIVA);
+		return dto;
+
 	}
 }
