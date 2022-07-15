@@ -11,14 +11,14 @@ import com.fundatec.lp1.converter.*;
 
 @Service
 public class ClienteService {
-	
+
 	@Autowired
 	private ClienteRepository repository;
-	
+
 	public List<Cliente> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public ClienteDTO adicionarCliente(ClienteDTO dto) {
 		Cliente entidade = ClienteConverter.converterParaEntity(dto);
 		Cliente entidadePersistida = repository.save(entidade);

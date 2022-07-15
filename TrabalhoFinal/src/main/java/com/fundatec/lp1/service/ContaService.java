@@ -22,11 +22,26 @@ public class ContaService {
 		return dto;
 	}
 
+	public ContaDTO adicionarConta(ContaDTO dto) {
+		Conta entidade = ContaConverter.converterParaEntity(dto);
+		Conta entidadePersistida = repository.save(entidade);
+		return ContaConverter.converterParaDTO(entidadePersistida);
+
+	}
+
 	public List<Conta> findAll() {
 		List<Conta> contas = repository.findAll();
 		return contas;
 	}
+	
+	public ContaDTO desativarContaPorId(Integer id) {
+		Conta entity = repository.findById(id).get();
+		ContaDTO dto = new ContaDTO(entity);
+		dto.setStatus(StatusConta.INATIVA);
+		return dto;
 
+	}
+		
 	public ContaDTO ativarContaPorId(Integer id) {
 		Conta entity = repository.findById(id).get();
 		ContaDTO dto = new ContaDTO(entity);
