@@ -33,19 +33,19 @@ public class ContaService {
 		List<Conta> contas = repository.findAll();
 		return contas;
 	}
-	
-	public ContaDTO desativarContaPorId(Integer id) {
-		Conta entity = repository.findById(id).get();
-		ContaDTO dto = new ContaDTO(entity);
-		dto.setStatus(StatusConta.INATIVA);
-		return dto;
-
-	}
 		
 	public ContaDTO ativarContaPorId(Integer id) {
 		Conta entity = repository.findById(id).get();
 		ContaDTO dto = new ContaDTO(entity);
 		dto.setStatus(StatusConta.ATIVA);
+		return dto;
+
+	}
+	
+	public ContaDTO desativarContaPorId(Integer id) {
+		Conta entity = repository.findById(id).get();
+		ContaDTO dto = new ContaDTO(entity);
+		dto.setStatus(StatusConta.INATIVA);
 		return dto;
 
 	}

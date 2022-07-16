@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 
 import lombok.Data;
 import lombok.Getter;
@@ -22,8 +26,9 @@ public class Cliente {
 
 	@Column(nullable = true, name = "NOME")
 	private String nome;
-
-	@Column(nullable = true, name = "CPF")
+	
+	@ManyToOne
+	@JoinColumn(name = "CPF_CLIENTE")
 	private String cpf;
 
 	@Column(nullable = true, name = "ENDERECO")

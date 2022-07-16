@@ -25,4 +25,9 @@ public class ClienteService {
 		return ClienteConverter.converterParaDTO(entidadePersistida);
 	}
 
+	public void deletarClientePorId(Integer id) {
+		repository.findById(id).get();
+		repository.deleteById(id);
+	}
+
 }
