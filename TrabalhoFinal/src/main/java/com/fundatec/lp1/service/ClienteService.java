@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.fundatec.lp1.dto.ClienteDTO;
 import com.fundatec.lp1.models.Cliente;
 import com.fundatec.lp1.repository.ClienteRepository;
+import com.fundatec.lp1.service.exceptions.EntityNotFoundException;
 import com.fundatec.lp1.converter.*;
 
 @Service
@@ -26,7 +27,7 @@ public class ClienteService {
 	}
 
 	public void deletarClientePorId(Integer id) {
-		repository.findById(id).get();
+		repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cliente inexistente"));
 		repository.deleteById(id);
 	}
 

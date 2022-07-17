@@ -8,6 +8,7 @@ import com.fundatec.lp1.dto.ContaDTO;
 import com.fundatec.lp1.enums.StatusConta;
 import com.fundatec.lp1.models.Conta;
 import com.fundatec.lp1.repository.ContaRepository;
+import com.fundatec.lp1.service.exceptions.EntityNotFoundException;
 
 @Service
 public class ContaService {
@@ -16,7 +17,7 @@ public class ContaService {
 	private ContaRepository repository;
 
 	public ContaDTO findById(Integer id) {
-		Conta entity = repository.findById(id).orElseThrow(() -> new RuntimeException("Conta inexistente"));
+		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		ContaConverter.converterParaDTO(entity);
 		ContaDTO dto = new ContaDTO(entity);
 		return dto;
@@ -35,7 +36,7 @@ public class ContaService {
 	}
 		
 	public ContaDTO ativarContaPorId(Integer id) {
-		Conta entity = repository.findById(id).get();
+		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));;
 		ContaDTO dto = new ContaDTO(entity);
 		dto.setStatus(StatusConta.ATIVA);
 		return dto;
@@ -43,7 +44,7 @@ public class ContaService {
 	}
 	
 	public ContaDTO desativarContaPorId(Integer id) {
-		Conta entity = repository.findById(id).get();
+		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		ContaDTO dto = new ContaDTO(entity);
 		dto.setStatus(StatusConta.INATIVA);
 		return dto;
