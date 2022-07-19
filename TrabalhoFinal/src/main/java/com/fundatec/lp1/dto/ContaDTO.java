@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fundatec.lp1.enums.StatusConta;
 import com.fundatec.lp1.models.Conta;
+import com.fundatec.lp1.models.Movimentacao;
 
 import lombok.Data;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class ContaDTO {
 	private String cpfTitular;
 	private Integer senha;
 	private Double saldo;
-	private List<String> movimentacoesCliente;
+	private List<Movimentacao> movimentacoes;
 
 	public ContaDTO() {
 
@@ -31,7 +32,7 @@ public class ContaDTO {
 		cpfTitular = conta.getCpfTitular();
 		senha = conta.getSenha();
 		saldo = conta.getSaldo();
-		movimentacoesCliente = conta.getMovimentacoesCliente();
+		movimentacoes = conta.getMovimentacoes();
 	}
 
 }

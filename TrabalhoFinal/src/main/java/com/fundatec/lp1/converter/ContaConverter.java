@@ -12,7 +12,7 @@ public class ContaConverter {
 		dto.setCpfTitular(conta.getCpfTitular());
 		dto.setSenha(conta.getSenha());
 		dto.setSaldo(conta.getSaldo());
-		dto.setMovimentacoesCliente(conta.getMovimentacoesCliente());
+		dto.setMovimentacoes(conta.getMovimentacoes());
 		return dto;
 	}
 	
@@ -23,7 +23,7 @@ public class ContaConverter {
 		entity.setCpfTitular(dto.getCpfTitular());
 		entity.setSenha(dto.getSenha());
 		entity.setSaldo(dto.getSaldo());
-		entity.setMovimentacoesCliente(dto.getMovimentacoesCliente());
+		entity.setMovimentacoes(dto.getMovimentacoes());
 		return entity;
 	}
 }

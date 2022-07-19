@@ -36,19 +36,19 @@ public class Conta {
 	private Double saldo;
 
 	@ElementCollection
-	private List<String> movimentacoesCliente;
+	private List<Movimentacao> movimentacoes;
 
 	public Conta() {
 
 	}
 
 	public Conta(Integer id, StatusConta status, String cpfTitular, Integer senha, Double saldo,
-			List<String> movimentacoesCliente) {
+			List<Movimentacao> movimentacoes) {
 		this.id = id;
 		this.status = status;
 		this.cpfTitular = cpfTitular;
 		this.senha = senha;
 		this.saldo = saldo;
-		this.movimentacoesCliente = movimentacoesCliente;
+		this.movimentacoes = movimentacoes;
 	}
 }
