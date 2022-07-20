@@ -1,5 +1,6 @@
 package com.fundatec.lp1.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +8,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import com.fundatec.lp1.enums.TipoCliente;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +29,7 @@ public class Cliente {
 	@Column(nullable = true, name = "NOME")
 	private String nome;
 
-	@Column(nullable = true, name = "CPF_CLIENTE")
+	@Column(nullable = true, name = "CPF")
 	private String cpf;
 
 	@Column(nullable = true, name = "ENDERECO")
@@ -35,9 +39,8 @@ public class Cliente {
 	@Enumerated(EnumType.STRING)
 	private TipoCliente tipoCliente;
 
-//	@ManyToMany
-//	@JoinColumn(name = "ID_BANCO")
-//	private Banco banco;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Banco banco;
 
 	public Cliente() {
 

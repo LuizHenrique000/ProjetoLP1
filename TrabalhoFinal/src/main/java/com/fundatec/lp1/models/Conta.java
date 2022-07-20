@@ -1,6 +1,7 @@
 package com.fundatec.lp1.models;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,12 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import com.fundatec.lp1.enums.StatusConta;
-
 import lombok.Data;
 
 @Data
@@ -28,7 +26,7 @@ public class Conta {
 	@Enumerated(EnumType.STRING)
 	private StatusConta status = StatusConta.INDEFINIDA;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Cliente cliente;
 
 	@Column(nullable = true, name = "SENHA")
@@ -37,7 +35,7 @@ public class Conta {
 	@Column(nullable = true, name = "SALDO")
 	private Double saldo;
 
-	@OneToMany()
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="conta")
 	private List<Movimentacao> movimentacoes;
 
 	public Conta() {
