@@ -1,4 +1,4 @@
-package com.fundatec.lp1.dto;
+package com.fundatec.lp1.requestDTO;
 
 import java.util.List;
 
@@ -12,18 +12,18 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-public class BancoDTO {
+public class RequestBanco {
 
 	private Integer id;
 	private String nome;
 	private Integer senha;
 	private List<Cliente> clientesCadastros;
 	
-	public BancoDTO() {
+	public RequestBanco() {
 		
 	}
 	
-	public BancoDTO(Banco banco) {
+	public RequestBanco(Banco banco) {
 		id = banco.getId();
 		nome = banco.getNome();
 		senha = banco.getSenha();

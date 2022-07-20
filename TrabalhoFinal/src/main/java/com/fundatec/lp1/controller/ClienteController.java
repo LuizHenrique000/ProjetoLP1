@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.fundatec.lp1.dto.ClienteDTO;
+
 import com.fundatec.lp1.models.Cliente;
+import com.fundatec.lp1.requestDTO.RequestCliente;
 import com.fundatec.lp1.service.ClienteService;
 
 @RestController
@@ -29,8 +30,8 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ClienteDTO> adicionarCliente(@RequestBody ClienteDTO dto) {
-		ClienteDTO clienteDTO = service.adicionarCliente(dto);
+	public ResponseEntity<RequestCliente> adicionarCliente(@RequestBody RequestCliente dto) {
+		RequestCliente clienteDTO = service.adicionarCliente(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteDTO);
 
 	}

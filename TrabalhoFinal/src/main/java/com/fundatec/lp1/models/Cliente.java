@@ -7,9 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import com.fundatec.lp1.enums.TipoCliente;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +34,10 @@ public class Cliente {
 	@Column(nullable = true, name = "TIPO_CLIENTE")
 	@Enumerated(EnumType.STRING)
 	private TipoCliente tipoCliente;
+
+//	@ManyToMany
+//	@JoinColumn(name = "ID_BANCO")
+//	private Banco banco;
 
 	public Cliente() {
 

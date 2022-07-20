@@ -1,4 +1,4 @@
-package com.fundatec.lp1.dto;
+package com.fundatec.lp1.responseDTO;
 
 import java.util.List;
 
@@ -13,24 +13,19 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-public class ContaDTO {
+public class ResponseConta {
 
-	private Integer id;
 	private StatusConta status = StatusConta.INDEFINIDA;
 	private String cpfTitular;
-	private Integer senha;
 	private Double saldo;
 	private List<Movimentacao> movimentacoes;
 
-	public ContaDTO() {
+	public ResponseConta() {
 
 	}
 
-	public ContaDTO(Conta conta) {
-		id = conta.getId();
+	public ResponseConta(Conta conta) {
 		status = conta.getStatus();
-		cpfTitular = conta.getCpfTitular();
-		senha = conta.getSenha();
 		saldo = conta.getSaldo();
 		movimentacoes = conta.getMovimentacoes();
 	}

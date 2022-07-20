@@ -1,12 +1,12 @@
 package com.fundatec.lp1.converter;
 
-import com.fundatec.lp1.dto.BancoDTO;
 import com.fundatec.lp1.models.Banco;
+import com.fundatec.lp1.requestDTO.RequestBanco;
 
 public class BancoConverter {
 
-	public static BancoDTO converterParaDTO(Banco banco) {
-		BancoDTO dto = new BancoDTO();
+	public static RequestBanco converterParaDTO(Banco banco) {
+		RequestBanco dto = new RequestBanco();
 		dto.setId(banco.getId());
 		dto.setNome(banco.getNome());
 		dto.setSenha(banco.getSenha());
@@ -14,7 +14,7 @@ public class BancoConverter {
 		return dto;
 	}
 
-	public static Banco converterParaEntity(BancoDTO dto) {
+	public static Banco converterParaEntity(RequestBanco dto) {
 		Banco entity = new Banco();
 		entity.setId(dto.getId());
 		entity.setNome(dto.getNome());

@@ -30,11 +30,11 @@ public class ControllerExceptionHandler {
 	public ResponseEntity<StandardError> isTitularException(IsTitularException e, HttpServletRequest request) {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
-		err.setStatus(HttpStatus.I_AM_A_TEAPOT.value());
-		err.setError("O cliente n√£o pode ser deletado pois √© titular de uma conta");
+		err.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+		err.setError("O cliente n„o pode ser deletado pois È titular de uma conta");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
-		return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(err);
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
 	}
 
 }

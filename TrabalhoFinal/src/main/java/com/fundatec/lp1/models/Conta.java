@@ -2,13 +2,15 @@ package com.fundatec.lp1.models;
 
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fundatec.lp1.enums.StatusConta;
 
@@ -26,8 +28,8 @@ public class Conta {
 	@Enumerated(EnumType.STRING)
 	private StatusConta status = StatusConta.INDEFINIDA;
 
-	@Column(nullable = true, name = "CPF_TITULAR")
-	private String cpfTitular;
+	@OneToOne
+	private Cliente cliente;
 
 	@Column(nullable = true, name = "SENHA")
 	private Integer senha;
@@ -35,18 +37,18 @@ public class Conta {
 	@Column(nullable = true, name = "SALDO")
 	private Double saldo;
 
-	@ElementCollection
+	@OneToMany()
 	private List<Movimentacao> movimentacoes;
 
 	public Conta() {
 
 	}
 
-	public Conta(Integer id, StatusConta status, String cpfTitular, Integer senha, Double saldo,
+	public Conta(Integer id, StatusConta status, Cliente cliente, Integer senha, Double saldo,
 			List<Movimentacao> movimentacoes) {
 		this.id = id;
 		this.status = status;
-		this.cpfTitular = cpfTitular;
+		this.cliente = cliente;
 		this.senha = senha;
 		this.saldo = saldo;
 		this.movimentacoes = movimentacoes;

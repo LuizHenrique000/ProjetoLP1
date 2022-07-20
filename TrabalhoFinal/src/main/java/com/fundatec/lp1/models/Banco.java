@@ -1,14 +1,13 @@
 package com.fundatec.lp1.models;
 
 import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import lombok.Data;
 
 @Data
@@ -25,7 +24,8 @@ public class Banco {
 	@Column(nullable = true, name = "SENHA")
 	private Integer senha;
 	
-	@ElementCollection
+	@OneToMany
+	@JoinColumn(name = "ID_CLIENTES")
 	private List<Cliente> clientesCadastrados;
 
 	public Banco() {

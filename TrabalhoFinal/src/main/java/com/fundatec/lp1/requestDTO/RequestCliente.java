@@ -1,4 +1,4 @@
-package com.fundatec.lp1.dto;
+package com.fundatec.lp1.requestDTO;
 
 import com.fundatec.lp1.models.Cliente;
 
@@ -9,21 +9,20 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-public class ClienteDTO {
+public class RequestCliente {
 
 	private Integer id;
 	private String nome;
 	private String cpf;
 	private String endereco;
 
-	public ClienteDTO() {
+	public RequestCliente() {
 
 	}
 
-	public ClienteDTO(Cliente cliente) {
+	public RequestCliente(Cliente cliente) {
 		id = cliente.getId();
 		nome = cliente.getNome();
-		cpf = cliente.getCpf();
 		endereco = cliente.getEndereco();
 	}
 
