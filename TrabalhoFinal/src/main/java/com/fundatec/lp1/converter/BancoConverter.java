@@ -10,7 +10,6 @@ public class BancoConverter {
 		dto.setId(banco.getId());
 		dto.setNome(banco.getNome());
 		dto.setSenha(banco.getSenha());
-		dto.setClientesCadastros(banco.getClientesCadastrados());
 		return dto;
 	}
 
@@ -19,7 +18,6 @@ public class BancoConverter {
 		entity.setId(dto.getId());
 		entity.setNome(dto.getNome());
 		entity.setSenha(dto.getSenha());
-		entity.setClientesCadastrados(dto.getClientesCadastros());
 		return entity;
 	}
 }

@@ -1,5 +1,6 @@
 package com.fundatec.lp1.responseDTO;
 
+import com.fundatec.lp1.models.Banco;
 import com.fundatec.lp1.models.Cliente;
 
 import lombok.Data;
@@ -13,6 +14,7 @@ public class ResponseCliente {
 
 	private String nome;
 	private String endereco;
+	private Banco banco;
 
 	public ResponseCliente() {
 
@@ -21,6 +23,7 @@ public class ResponseCliente {
 	public ResponseCliente(Cliente cliente) {
 		nome = cliente.getNome();
 		endereco = cliente.getEndereco();
+		banco = cliente.getBanco();
 	}
 
 }

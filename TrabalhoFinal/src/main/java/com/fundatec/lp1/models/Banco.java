@@ -1,14 +1,10 @@
 package com.fundatec.lp1.models;
 
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import lombok.Data;
 
 @Data
@@ -25,8 +21,6 @@ public class Banco {
 	@Column(nullable = true, name = "SENHA")
 	private Integer senha;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="banco")
-	private List<Cliente> clientesCadastrados;
 
 	public Banco() {
 

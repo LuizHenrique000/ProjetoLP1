@@ -29,12 +29,13 @@ public class ClienteService {
 		return ClienteConverter.converterParaDTO(entidadePersistida);
 	}
 
-	public RuntimeException deletarClientePorId(Integer id) {
+	public void deletarClientePorId(Integer id) {
 		Cliente cliente = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cliente inexistente"));
 		if (cliente.getTipoCliente().equals(TipoCliente.TITULAR)) {
-			throw new IsTitularException("Cliente é titular");
+			throw new IsTitularException("Cliente titular");
 		}
-		return null;
+
+		repository.deleteById(id);
 
 	}
 }

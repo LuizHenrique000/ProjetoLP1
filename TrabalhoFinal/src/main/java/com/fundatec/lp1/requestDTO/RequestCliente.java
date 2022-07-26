@@ -1,5 +1,6 @@
 package com.fundatec.lp1.requestDTO;
 
+import com.fundatec.lp1.models.Banco;
 import com.fundatec.lp1.models.Cliente;
 
 import lombok.Data;
@@ -15,6 +16,7 @@ public class RequestCliente {
 	private String nome;
 	private String cpf;
 	private String endereco;
+	private Banco banco;
 
 	public RequestCliente() {
 
@@ -24,6 +26,7 @@ public class RequestCliente {
 		id = cliente.getId();
 		nome = cliente.getNome();
 		endereco = cliente.getEndereco();
+		banco = cliente.getBanco();
 	}
 
 }

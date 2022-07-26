@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.fundatec.lp1.service.exceptions.EntityNotFoundException;
 import com.fundatec.lp1.service.exceptions.IsTitularException;
+import com.fundatec.lp1.service.exceptions.SenhaInvalidaException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -20,18 +21,29 @@ public class ControllerExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Recurso n√£o encontrado");
+		err.setError("Recurso nao encontrado");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
-	
-	@ExceptionHandler()
+
+	@ExceptionHandler(IsTitularException.class)
 	public ResponseEntity<StandardError> isTitularException(IsTitularException e, HttpServletRequest request) {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-		err.setError("O cliente n„o pode ser deletado pois È titular de uma conta");
+		err.setError("O cliente nao pode ser deletado devido a ser titular de uma conta");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
+	}
+
+	@ExceptionHandler(SenhaInvalidaException.class)
+	public ResponseEntity<StandardError> senhaInvalidaException(SenhaInvalidaException e, HttpServletRequest request) {
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+		err.setError("Senha inv√°lida");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);

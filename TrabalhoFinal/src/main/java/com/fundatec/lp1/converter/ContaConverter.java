@@ -9,6 +9,7 @@ public class ContaConverter {
 		RequestConta dto = new RequestConta();
 		dto.setId(conta.getId());
 		dto.setStatus(conta.getStatus());
+		dto.setCliente(conta.getCliente());
 		dto.setSenha(conta.getSenha());
 		dto.setSaldo(conta.getSaldo());
 		dto.setMovimentacoes(conta.getMovimentacoes());
@@ -19,6 +20,7 @@ public class ContaConverter {
 		Conta entity = new Conta();
 		entity.setId(dto.getId());
 		entity.setStatus(dto.getStatus());
+		entity.setCliente(dto.getCliente());
 		entity.setSenha(dto.getSenha());
 		entity.setSaldo(dto.getSaldo());
 		entity.setMovimentacoes(dto.getMovimentacoes());

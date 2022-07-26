@@ -10,6 +10,7 @@ public class ClienteConverter {
 		dto.setId(cliente.getId());
 		dto.setNome(cliente.getNome());
 		dto.setEndereco(cliente.getEndereco());
+		dto.setBanco(cliente.getBanco());
 		return dto;
 	}
 	
@@ -18,6 +19,7 @@ public class ClienteConverter {
 		entity.setId(dto.getId());
 		entity.setNome(dto.getNome());
 		entity.setEndereco(dto.getEndereco());
+		entity.setBanco(dto.getBanco());
 		return entity;
 	}
 	

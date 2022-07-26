@@ -3,6 +3,7 @@ package com.fundatec.lp1.requestDTO;
 import java.util.List;
 
 import com.fundatec.lp1.enums.StatusConta;
+import com.fundatec.lp1.models.Cliente;
 import com.fundatec.lp1.models.Conta;
 import com.fundatec.lp1.models.Movimentacao;
 
@@ -16,8 +17,8 @@ import lombok.Setter;
 public class RequestConta {
 
 	private Integer id;
-	private StatusConta status = StatusConta.INDEFINIDA;
-	private String cpfTitular;
+	private StatusConta status;
+	private Cliente cliente;
 	private Integer senha;
 	private Double saldo;
 	private List<Movimentacao> movimentacoes;
@@ -29,6 +30,7 @@ public class RequestConta {
 	public RequestConta(Conta conta) {
 		id = conta.getId();
 		status = conta.getStatus();
+		cliente = conta.getCliente();
 		senha = conta.getSenha();
 		saldo = conta.getSaldo();
 		movimentacoes = conta.getMovimentacoes();
