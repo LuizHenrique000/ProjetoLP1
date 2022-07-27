@@ -18,7 +18,7 @@ public class ContaService {
 
 	public RequestConta findById(Integer id) {
 		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
-		ContaConverter.converterParaDTO(entity);
+		ContaConverter.converterParaRequestDTO(entity);
 		RequestConta dto = new RequestConta(entity);
 		return dto;
 	}
@@ -26,7 +26,7 @@ public class ContaService {
 	public RequestConta adicionarConta(RequestConta dto) {
 		Conta entidade = ContaConverter.converterParaEntity(dto);
 		Conta entidadePersistida = repository.save(entidade);
-		return ContaConverter.converterParaDTO(entidadePersistida);
+		return ContaConverter.converterParaRequestDTO(entidadePersistida);
 
 	}
 
@@ -38,7 +38,8 @@ public class ContaService {
 	public RequestConta ativarContaPorId(Integer id) {
 		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));;
 		RequestConta dto = new RequestConta(entity);
-		dto.setStatus(StatusConta.ATIVA);
+		entity.setStatus(StatusConta.ATIVA);
+		repository.save(entity);
 		return dto;
 
 	}
@@ -46,7 +47,8 @@ public class ContaService {
 	public RequestConta desativarContaPorId(Integer id) {
 		Conta entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		RequestConta dto = new RequestConta(entity);
-		dto.setStatus(StatusConta.INATIVA);
+		entity.setStatus(StatusConta.INATIVA);
+		repository.save(entity);
 		return dto;
 
 	}

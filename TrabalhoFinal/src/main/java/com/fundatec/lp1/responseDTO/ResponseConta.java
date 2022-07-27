@@ -19,7 +19,6 @@ public class ResponseConta {
 	private StatusConta status;
 	private Cliente cliente;
 	private Double saldo;
-	private List<Movimentacao> movimentacoes;
 
 	public ResponseConta() {
 
@@ -29,7 +28,6 @@ public class ResponseConta {
 		status = conta.getStatus();
 		cliente = conta.getCliente();
 		saldo = conta.getSaldo();
-		movimentacoes = conta.getMovimentacoes();
 	}
 
 }
