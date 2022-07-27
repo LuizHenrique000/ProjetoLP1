@@ -2,6 +2,7 @@ package com.fundatec.lp1.converter;
 
 import com.fundatec.lp1.models.Banco;
 import com.fundatec.lp1.requestDTO.RequestBanco;
+import com.fundatec.lp1.responseDTO.ResponseBanco;
 
 public class BancoConverter {
 
@@ -19,5 +20,11 @@ public class BancoConverter {
 		entity.setNome(dto.getNome());
 		entity.setSenha(dto.getSenha());
 		return entity;
+	}
+	
+	public static ResponseBanco converterParaResponse(Banco entity) {
+		ResponseBanco responseDTO = new ResponseBanco();
+		responseDTO.setNome(entity.getNome());
+		return responseDTO;
 	}
 }

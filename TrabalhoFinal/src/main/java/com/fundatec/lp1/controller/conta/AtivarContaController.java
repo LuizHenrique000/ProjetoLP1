@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fundatec.lp1.requestDTO.RequestConta;
+import com.fundatec.lp1.responseDTO.ResponseConta;
 import com.fundatec.lp1.service.ContaService;
 
 @RestController
@@ -18,8 +17,8 @@ public class AtivarContaController {
 	private ContaService service;
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<RequestConta> ativarContaPorId(@PathVariable Integer id) {
-		RequestConta contaDTO = service.ativarContaPorId(id);
+	public ResponseEntity<ResponseConta> ativarContaPorId(@PathVariable Integer id) {
+		ResponseConta contaDTO = service.ativarContaPorId(id);
 		return ResponseEntity.ok(contaDTO);
 	}
 }

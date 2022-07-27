@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 @Data
@@ -24,6 +24,7 @@ public class Movimentacao {
 	@Column(nullable = true, name = "DESCRICAO")
 	private String descricao;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Conta conta;
 	

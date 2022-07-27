@@ -2,18 +2,17 @@ package com.fundatec.lp1.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fundatec.lp1.converter.ContaConverter;
+import com.fundatec.lp1.enums.StatusConta;
 import com.fundatec.lp1.enums.TipoAcao;
 import com.fundatec.lp1.models.Conta;
 import com.fundatec.lp1.models.Movimentacao;
 import com.fundatec.lp1.repository.ContaRepository;
 import com.fundatec.lp1.repository.MovimentacaoRepository;
-import com.fundatec.lp1.requestDTO.RequestConta;
 import com.fundatec.lp1.responseDTO.ResponseConta;
+import com.fundatec.lp1.service.exceptions.ContaDesativadaException;
 import com.fundatec.lp1.service.exceptions.EntityNotFoundException;
 import com.fundatec.lp1.service.exceptions.SenhaInvalidaException;
 
@@ -22,15 +21,15 @@ public class CaixaService {
 
 	@Autowired
 	private ContaRepository repository;
-	
+
 	@Autowired
 	private MovimentacaoRepository movimentacaoRepository;
 
-	public Double consultarSaldo(Integer senha, Integer id) {
+	public String consultarSaldo(Integer senha, Integer id) {
 		Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		validar(senha, conta);
 		Double saldo = conta.getSaldo();
-		return saldo;
+		return "Saldo da sua conta: " + saldo;
 	}
 
 	public ResponseConta depositar(Integer senha, Integer id, Double deposito) {
@@ -39,22 +38,22 @@ public class CaixaService {
 		validar(senha, conta);
 		Double saldo = conta.getSaldo() + deposito;
 		conta.setSaldo(saldo);
-		gerarMovimentacao(conta, saldo, acao);
+		gerarMovimentacao(conta, deposito, acao);
 		repository.save(conta);
 		return ContaConverter.converterParaResponseDTO(conta);
 	}
 
-	public Double sacar(Integer senha, Integer id, Double saque) {
+	public String sacar(Integer senha, Integer id, Double saque) {
 		TipoAcao acao = TipoAcao.SAQUE;
 		Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		validar(senha, conta);
 		Double saldo = conta.getSaldo() - saque;
 		conta.setSaldo(saldo);
-		gerarMovimentacao(conta, saldo, acao);
+		gerarMovimentacao(conta, saque, acao);
 		repository.save(conta);
-		return saque;
+		return "Seu valor sacado: " + saque;
 	}
-	
+
 	public List<Movimentacao> consultarExtrato(Integer senha, Integer id) {
 		Conta conta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Conta inexistente"));
 		validar(senha, conta);
@@ -68,13 +67,19 @@ public class CaixaService {
 			throw new SenhaInvalidaException("Senha invalida");
 		}
 	}
-	
+
+	public void validarContaAtiva(StatusConta status) {
+		if (status.equals(StatusConta.INATIVA)) {
+			throw new ContaDesativadaException("Conta desativada");
+		}
+	}
+
 	public void gerarMovimentacao(Conta conta, Double valor, TipoAcao acao) {
 		Movimentacao movimentacao = new Movimentacao();
 		movimentacao.setConta(conta);
 		LocalDateTime horario = LocalDateTime.now();
 		movimentacao.setHorario(horario);
-		movimentacao.setDescricao("horario: " + horario + " acao: " + acao + " valor: " + valor);
+		movimentacao.setDescricao(acao + " no valor: " + valor);
 		movimentacaoRepository.save(movimentacao);
 	}
 

@@ -20,7 +20,7 @@ public class CaixaAutomaticoController {
 	private CaixaService service;
 
 	@GetMapping(value = "/saldo/{senha}/{id}")
-	public Double consultarSaldo(@PathVariable Integer senha, @PathVariable Integer id) {
+	public String consultarSaldo(@PathVariable Integer senha, @PathVariable Integer id) {
 		return service.consultarSaldo(senha, id);
 	}
 
@@ -31,7 +31,7 @@ public class CaixaAutomaticoController {
 	}
 
 	@PutMapping(value = "saque/{senha}/{id}/{saque}")
-	public Double sacar(@PathVariable Integer senha, @PathVariable Integer id, @PathVariable Double saque) {
+	public String sacar(@PathVariable Integer senha, @PathVariable Integer id, @PathVariable Double saque) {
 		return service.sacar(senha, id, saque);
 	}
 	

@@ -13,6 +13,7 @@ import lombok.Setter;
 public class ResponseCliente {
 
 	private String nome;
+	private String cpf;
 	private String endereco;
 	private Banco banco;
 
@@ -22,6 +23,7 @@ public class ResponseCliente {
 
 	public ResponseCliente(Cliente cliente) {
 		nome = cliente.getNome();
+		cpf = cliente.getCpf();
 		endereco = cliente.getEndereco();
 		banco = cliente.getBanco();
 	}

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fundatec.lp1.models.Conta;
 import com.fundatec.lp1.requestDTO.RequestConta;
+import com.fundatec.lp1.responseDTO.ResponseConta;
 import com.fundatec.lp1.service.ContaService;
 
 @RestController
@@ -28,8 +28,8 @@ public class ContaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<RequestConta> adicionarConta(@RequestBody RequestConta dto) {
-		RequestConta contaDTO = service.adicionarConta(dto);
+	public ResponseEntity<ResponseConta> adicionarConta(@RequestBody RequestConta dto) {
+		ResponseConta contaDTO = service.adicionarConta(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(contaDTO);
 
 	}

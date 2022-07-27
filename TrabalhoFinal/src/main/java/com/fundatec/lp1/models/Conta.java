@@ -1,6 +1,7 @@
 package com.fundatec.lp1.models;
 
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fundatec.lp1.enums.StatusConta;
+
 import lombok.Data;
 
 @Data
@@ -24,7 +28,7 @@ public class Conta {
 
 	@Column(nullable = true, name = "STATUS_CONTA")
 	@Enumerated(EnumType.STRING)
-	private StatusConta status = StatusConta.INDEFINIDA;
+	private StatusConta status;
 
 	@OneToOne(cascade=CascadeType.ALL)
 	private Cliente cliente;
@@ -35,6 +39,7 @@ public class Conta {
 	@Column(nullable = true, name = "SALDO")
 	private Double saldo;
 
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="conta")
 	private List<Movimentacao> movimentacoes;
 
